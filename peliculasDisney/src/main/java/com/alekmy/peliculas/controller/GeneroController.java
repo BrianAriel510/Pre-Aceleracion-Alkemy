@@ -29,7 +29,7 @@ public class GeneroController {
         return ResponseEntity.status(HttpStatus.CREATED).body(generoGuardado);
     }
 
-   @GetMapping("/all")
+   @GetMapping("/all")// ME DEVUELVE SOLO LOS GENEROS (Basic)
    public ResponseEntity<List<GeneroBasicDTO>> getAllBasic(){
        List<GeneroBasicDTO> generosList = generoService.getAllGenerosBasic();
        return ResponseEntity.ok(generosList);

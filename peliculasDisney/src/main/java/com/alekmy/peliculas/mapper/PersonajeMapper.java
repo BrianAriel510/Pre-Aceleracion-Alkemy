@@ -5,6 +5,7 @@ import com.alekmy.peliculas.dto.PersonajeDTO;
 import com.alekmy.peliculas.entity.PeliculaEntity;
 import com.alekmy.peliculas.entity.PersonajeEntity;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,8 @@ public class PersonajeMapper {
         return personajeDTO;
     }
 
-    public List<PersonajeDTO> pesonajeListEntity2ListDTO(List<PersonajeEntity> peliculasAsociadas) {
-        List<PersonajeDTO> listPersonajeDTO = new ArrayList<>();
+    public Set<PersonajeDTO> pesonajeListEntity2ListDTO(Set<PersonajeEntity> peliculasAsociadas) {
+        Set<PersonajeDTO> listPersonajeDTO = new HashSet<>();
         for (PersonajeEntity entity : peliculasAsociadas) {
             listPersonajeDTO.add(personajeEntity2DTO(entity, false, false));
         }

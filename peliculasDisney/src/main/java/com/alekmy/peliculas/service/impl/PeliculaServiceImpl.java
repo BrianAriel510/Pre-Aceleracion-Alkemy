@@ -1,5 +1,6 @@
 package com.alekmy.peliculas.service.impl;
 
+import com.alekmy.peliculas.dto.PeliculaBasicDTO;
 import com.alekmy.peliculas.dto.PeliculaDTO;
 import com.alekmy.peliculas.entity.PeliculaEntity;
 import com.alekmy.peliculas.mapper.PeliculaMapper;
@@ -36,9 +37,18 @@ public class PeliculaServiceImpl implements IPeliculaService {
         return result;
     }
 
+
+    @Override
+    public List<PeliculaBasicDTO> getAllPeliculasBasic() {
+        List<PeliculaEntity> peliculaEntity= peliculaRepository.findAll();
+        List<PeliculaBasicDTO> result= peliculaMapper.peliculaBasicEntityList2DtoList(peliculaEntity);
+        return result;
+    }
+
     @Override
     public void delete(Long id) {
         peliculaRepository.deleteById(id);
     }
-
+    
+    
 }

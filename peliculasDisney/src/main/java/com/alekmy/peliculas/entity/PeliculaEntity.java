@@ -50,7 +50,7 @@ public class PeliculaEntity {
             inverseJoinColumns = @JoinColumn(name = "personajes_id"))
     private Set<PersonajeEntity> personajesAsociados;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "generos_id", insertable = false, updatable = false)
     private GeneroEntity genero;
 

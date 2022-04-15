@@ -1,6 +1,7 @@
 package com.alekmy.peliculas.mapper;
 
 import com.alekmy.peliculas.dto.GeneroDTO;
+import com.alekmy.peliculas.dto.PeliculaBasicDTO;
 import com.alekmy.peliculas.dto.PeliculaDTO;
 import com.alekmy.peliculas.dto.PersonajeDTO;
 import com.alekmy.peliculas.entity.PeliculaEntity;
@@ -45,16 +46,34 @@ public class PeliculaMapper {
         }
 
         if (loadPersonajes) {
-            List<PersonajeDTO> personajesDTO = personajeMapper.pesonajeListEntity2ListDTO((List<PersonajeEntity>) entity.getPersonajesAsociados());
+            Set<PersonajeDTO> personajesDTO = personajeMapper.pesonajeListEntity2ListDTO((Set<PersonajeEntity>) entity.getPersonajesAsociados());
             peliculaDTO.setPersonajesAsociados((Set<PersonajeDTO>) personajesDTO);
         }
         return peliculaDTO;
     }
+    
+     public PeliculaBasicDTO peliculaEntity2DtoBasic(PeliculaEntity entity) {
+        PeliculaBasicDTO peliculaDTO = new PeliculaBasicDTO();
+        peliculaDTO.setId(entity.getId());
+        peliculaDTO.setTitulo(entity.getTitulo());
+        peliculaDTO.setImagen(entity.getImagen());
+        peliculaDTO.setFechaDeCreacion(entity.getFechaDeCreacion().toString()); 
+        peliculaDTO.setCalificacion(entity.getCalificacion());
+        return peliculaDTO;
+     }
 
     public List<PeliculaDTO> peliculaEntityList2DtoList(List<PeliculaEntity> listPeliculaEntity, boolean loadGenero) {
         List<PeliculaDTO> listPeliculaDTO = new ArrayList<>();
         for (PeliculaEntity entity : listPeliculaEntity) {
             listPeliculaDTO.add(peliculaEntity2Dto(entity, false, false));
+        }
+        return listPeliculaDTO;
+    }
+
+    public List<PeliculaBasicDTO> peliculaBasicEntityList2DtoList(List<PeliculaEntity> listPeliculaEntity) {
+        List<PeliculaBasicDTO> listPeliculaDTO = new ArrayList<>();
+        for (PeliculaEntity entity : listPeliculaEntity) {
+            listPeliculaDTO.add(peliculaEntity2DtoBasic(entity));
         }
         return listPeliculaDTO;
     }

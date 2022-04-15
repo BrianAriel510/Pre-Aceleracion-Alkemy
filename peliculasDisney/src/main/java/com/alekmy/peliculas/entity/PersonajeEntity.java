@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ public class PersonajeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    
+
     private String imagen;
 
     private String nombre;
@@ -36,7 +37,7 @@ public class PersonajeEntity {
 
     private String historia;
 
-    @ManyToMany(mappedBy = "personajesAsociados", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "personajesAsociados", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<PeliculaEntity> peliculasAsociadas = new HashSet<>();
 
     private boolean deleted = Boolean.FALSE; //--> soft delete

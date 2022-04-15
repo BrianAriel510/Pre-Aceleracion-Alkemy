@@ -10,4 +10,7 @@ public interface IPersonajeService {
     public Set<PersonajeDTO> getAllPersonajes();
     
     public void delete(Long id);
+    
+    public PersonajeDTO update(PersonajeDTO dto, Long id);
+       
 }

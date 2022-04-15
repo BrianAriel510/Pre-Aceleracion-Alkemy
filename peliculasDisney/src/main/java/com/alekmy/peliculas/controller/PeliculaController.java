@@ -1,6 +1,7 @@
 
 package com.alekmy.peliculas.controller;
 
+import com.alekmy.peliculas.dto.PeliculaBasicDTO;
 import com.alekmy.peliculas.dto.PeliculaDTO;
 import com.alekmy.peliculas.service.IPeliculaService;
 import java.util.List;
@@ -28,10 +29,10 @@ public class PeliculaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(peliculaGuardada);
     }
     
-    @GetMapping("{/all}")
-    public ResponseEntity<List<PeliculaDTO>> getall(){
+    @GetMapping("/all")// ME DEVUELVE SOLO LAS PELICULAS (BASIC)
+    public ResponseEntity<List<PeliculaDTO>> getAllBasic(){
         List<PeliculaDTO> peliculaList = peliculaService.getAllPeliculas();
-        return ResponseEntity.ok(peliculaList);
+        return ResponseEntity.ok().body(peliculaList);
     }
     
    @DeleteMapping("/{id}")
