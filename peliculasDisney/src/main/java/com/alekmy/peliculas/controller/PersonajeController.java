@@ -48,4 +48,11 @@ public class PersonajeController {
         PersonajeDTO result = personajeService.update(dto, id);
         return ResponseEntity.ok().body(result);
     }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<PersonajeDTO> getById(@PathVariable Long id){
+        PersonajeDTO personaje= personajeService.findById(id);
+        return ResponseEntity.ok(personaje);
+    }
+    
 }

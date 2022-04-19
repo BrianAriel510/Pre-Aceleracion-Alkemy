@@ -33,7 +33,8 @@ public class PersonajeServiceImpl implements IPersonajeService {
         return result;
     }
 
-    @Override
+    @Override /*Es correcto hacer este método? o me conviene buscar la forma de reutilizar el de arriba?
+    Cambia el parámetro solamente. Uno recibe Basic y el otro un DTO full.*/
     public PersonajeDTO save(PersonajeDTO dto) {
         PersonajeEntity personajeEntity = personajeMapper.personajeDTO2Entity(dto);
         PersonajeEntity personajeSaved = personajeRepository.save(personajeEntity);
@@ -52,10 +53,10 @@ public class PersonajeServiceImpl implements IPersonajeService {
 
     @Override // TODO: preguntar antes si existe
     public void delete(Long id) {
-        Optional<PersonajeEntity> pj2delete = personajeRepository.findById(id);
+        Optional<PersonajeEntity> pjFound = personajeRepository.findById(id);
 
-        if (pj2delete.isPresent()) {
-            personajeRepository.deleteById(id);
+        if (pjFound.isPresent()) {
+            personajeRepository.deleteById(pjFound.get().getId());
         }
     }
 
@@ -74,7 +75,18 @@ public class PersonajeServiceImpl implements IPersonajeService {
         PersonajeDTO result= personajeMapper.personajeEntity2DTO(personajeEntity, false);
         result = this.save(result);
         return result;
+    }
+
+    @Override
+    public PersonajeDTO findById(Long id) {
+        Optional<PersonajeEntity> personajeFound= personajeRepository.findById(id);
         
+        if(!personajeFound.isPresent()){
+            log.info("No se encontró el personaje con el ud " + id);
+        }
+        
+        PersonajeDTO personaje= personajeMapper.personajeEntity2DTO(personajeFound.get(), false);
+        return personaje;
     }
 
 }

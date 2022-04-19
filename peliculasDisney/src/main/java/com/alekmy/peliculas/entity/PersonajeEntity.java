@@ -22,7 +22,7 @@ import org.hibernate.annotations.Where;
 @Table(name = "personajes")
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE icon SET delete = true WHERE id=?")
+@SQLDelete(sql = "UPDATE personajes SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")// --> soft Delete 
 public class PersonajeEntity {
 

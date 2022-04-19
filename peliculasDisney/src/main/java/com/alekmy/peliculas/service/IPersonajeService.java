@@ -16,5 +16,7 @@ public interface IPersonajeService {
     public void delete(Long id);
     
     public PersonajeDTO update(PersonajeDTO dto, Long id);
+    
+    public PersonajeDTO findById(Long id);
        
 }
