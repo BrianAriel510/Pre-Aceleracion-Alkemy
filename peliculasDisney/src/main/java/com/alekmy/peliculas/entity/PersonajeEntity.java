@@ -27,7 +27,7 @@ import org.hibernate.annotations.Where;
 public class PersonajeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String imagen;

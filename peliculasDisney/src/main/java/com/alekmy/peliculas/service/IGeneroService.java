@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IGeneroService {
     
-    public GeneroDTO save (GeneroDTO dto);
+    public GeneroDTO save (GeneroBasicDTO dto);
     
     public List<GeneroDTO> getAllGeneros();
     

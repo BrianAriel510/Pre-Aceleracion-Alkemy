@@ -1,5 +1,6 @@
 package com.alekmy.peliculas.entity;
 
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ import org.hibernate.annotations.Where;
 public class GeneroEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
@@ -30,6 +31,6 @@ public class GeneroEntity {
     private boolean deleted = Boolean.FALSE; //--> soft delete. Se complementa con las anotaciondes @SQL y @Where. 1(T) o 0(F) en la DB
 
     @OneToMany(mappedBy = "genero", cascade = CascadeType.PERSIST)
-    private Set<PeliculaEntity> peliculasAsociadas;
+    private List<PeliculaEntity> peliculasAsociadas;
 
 }

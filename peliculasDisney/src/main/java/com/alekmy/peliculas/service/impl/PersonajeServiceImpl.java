@@ -65,13 +65,14 @@ public class PersonajeServiceImpl implements IPersonajeService {
         Optional<PersonajeEntity> personajeFound = personajeRepository.findById(id);
 
         if (!personajeFound.isPresent()) {
-            log.info("El id es incorrecto");
+            log.info("El id " + id + " es incorrecto o inexistente");
         }
         
         PersonajeEntity personajeCaught = personajeFound.get();
         PersonajeDTO personaje2Update = personajeMapper.personaje2Update(personajeCaught, dto);
         PersonajeEntity personajeEntity = personajeMapper.personajeDTO2Entity(personaje2Update);
         PersonajeDTO result= personajeMapper.personajeEntity2DTO(personajeEntity, false);
+        result = this.save(result);
         return result;
         
     }

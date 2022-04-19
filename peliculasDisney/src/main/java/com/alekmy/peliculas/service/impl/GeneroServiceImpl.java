@@ -20,7 +20,7 @@ public class GeneroServiceImpl implements IGeneroService {
     private GeneroRepository generoRepository;
 
     @Override
-    public GeneroDTO save(GeneroDTO dto) {
+    public GeneroDTO save(GeneroBasicDTO dto) {
         GeneroEntity generoEntity = generoMapper.generoDto2Entity(dto);
         GeneroEntity generoSaved = generoRepository.save(generoEntity);
         GeneroDTO result = generoMapper.generoEntity2DTO(generoSaved,false);

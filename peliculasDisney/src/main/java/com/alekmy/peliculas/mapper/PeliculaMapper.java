@@ -62,7 +62,7 @@ public class PeliculaMapper {
         return peliculaDTO;
      }
 
-    public List<PeliculaDTO> peliculaEntityList2DtoList(List<PeliculaEntity> listPeliculaEntity, boolean loadGenero) {
+    public List<PeliculaDTO> peliculaEntityList2DtoList(List<PeliculaEntity> listPeliculaEntity, boolean loadGenero, boolean loadPersonajes) {
         List<PeliculaDTO> listPeliculaDTO = new ArrayList<>();
         for (PeliculaEntity entity : listPeliculaEntity) {
             listPeliculaDTO.add(peliculaEntity2Dto(entity, false, false));

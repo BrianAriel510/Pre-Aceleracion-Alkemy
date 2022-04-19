@@ -20,7 +20,6 @@ public class PeliculaServiceImpl implements IPeliculaService {
     private PeliculaRepository peliculaRepository;
 
     //SE USA EL TRANSACTIONAL????
-    
     @Override
     public PeliculaDTO save(PeliculaDTO dto) {
         PeliculaEntity peliculaEntity = peliculaMapper.peliculaDto2Entity(dto);
@@ -31,17 +30,16 @@ public class PeliculaServiceImpl implements IPeliculaService {
     }
 
     @Override
-    public List<PeliculaDTO> getAllPeliculas() { 
+    public List<PeliculaDTO> getAllPeliculas() {
         List<PeliculaEntity> peliculasEntity = peliculaRepository.findAll();
-        List<PeliculaDTO> result = peliculaMapper.peliculaEntityList2DtoList(peliculasEntity, false);
+        List<PeliculaDTO> result = peliculaMapper.peliculaEntityList2DtoList(peliculasEntity, false, false);
         return result;
     }
 
-
     @Override
     public List<PeliculaBasicDTO> getAllPeliculasBasic() {
-        List<PeliculaEntity> peliculaEntity= peliculaRepository.findAll();
-        List<PeliculaBasicDTO> result= peliculaMapper.peliculaBasicEntityList2DtoList(peliculaEntity);
+        List<PeliculaEntity> peliculaEntity = peliculaRepository.findAll();
+        List<PeliculaBasicDTO> result = peliculaMapper.peliculaBasicEntityList2DtoList(peliculaEntity);
         return result;
     }
 
@@ -49,6 +47,5 @@ public class PeliculaServiceImpl implements IPeliculaService {
     public void delete(Long id) {
         peliculaRepository.deleteById(id);
     }
-    
-    
+
 }

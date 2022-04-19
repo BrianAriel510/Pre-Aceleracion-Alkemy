@@ -17,7 +17,7 @@ public class GeneroMapper {
     @Autowired
     private PeliculaMapper peliculaMapper;
 
-    public GeneroEntity generoDto2Entity(GeneroDTO dto) {
+    public GeneroEntity generoDto2Entity(GeneroBasicDTO dto) {
         GeneroEntity generoEntity = new GeneroEntity();
         generoEntity.setNombre(dto.getNombre());
         return generoEntity;
@@ -29,8 +29,7 @@ public class GeneroMapper {
         generoDTO.setNombre(entity.getNombre());
         if (loadPelicula) {
             List<PeliculaDTO> peliculasDTO
-                    = (List<PeliculaDTO>) peliculaMapper.peliculaEntity2Dto(
-                            (PeliculaEntity) entity.getPeliculasAsociadas(), false, false);
+                    =  peliculaMapper.peliculaEntityList2DtoList(entity.getPeliculasAsociadas(), false, false);
             generoDTO.setPeliculasAsociadas(peliculasDTO);
         }
         return generoDTO;
