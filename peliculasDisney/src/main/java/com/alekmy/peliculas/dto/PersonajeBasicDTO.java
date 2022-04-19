@@ -7,7 +7,10 @@ import lombok.Setter;
 @Setter
 public class PersonajeBasicDTO {
  
-    private String id;
+    private Long id;
     private String nombre;
     private String imagen;
+    private Integer edad;
+    private Double peso;
+    private String historia;
 }

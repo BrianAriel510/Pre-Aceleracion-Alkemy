@@ -1,5 +1,6 @@
 package com.alekmy.peliculas.controller;
 
+import com.alekmy.peliculas.dto.PersonajeBasicDTO;
 import com.alekmy.peliculas.dto.PersonajeDTO;
 import com.alekmy.peliculas.entity.PersonajeEntity;
 import com.alekmy.peliculas.service.IPersonajeService;
@@ -25,24 +26,24 @@ public class PersonajeController {
     private IPersonajeService personajeService;
 
     @PostMapping
-    public ResponseEntity<PersonajeDTO> save(@RequestBody PersonajeDTO dto) {
+    public ResponseEntity<PersonajeDTO> save(@RequestBody PersonajeBasicDTO dto) {
         PersonajeDTO personajeGuardado = personajeService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(personajeGuardado);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Set<PersonajeDTO>> getAll() {
-        Set<PersonajeDTO> personajes = personajeService.getAllPersonajes();
+    public ResponseEntity<List<PersonajeDTO>> getAll() {
+        List<PersonajeDTO> personajes = personajeService.getAllPersonajes();
         return ResponseEntity.ok(personajes);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         personajeService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("{/id}")
+    @PutMapping("/{id}")
     public ResponseEntity<PersonajeDTO> updatePersonaje(@PathVariable Long id, @RequestBody PersonajeDTO dto) {
         PersonajeDTO result = personajeService.update(dto, id);
         return ResponseEntity.ok().body(result);

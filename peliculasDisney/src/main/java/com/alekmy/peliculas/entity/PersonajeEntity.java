@@ -1,6 +1,9 @@
 package com.alekmy.peliculas.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -38,8 +41,32 @@ public class PersonajeEntity {
     private String historia;
 
     @ManyToMany(mappedBy = "personajesAsociados", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<PeliculaEntity> peliculasAsociadas = new HashSet<>();
+    private List<PeliculaEntity> peliculasAsociadas = new ArrayList<>();
 
     private boolean deleted = Boolean.FALSE; //--> soft delete
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PersonajeEntity other = (PersonajeEntity) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
 }

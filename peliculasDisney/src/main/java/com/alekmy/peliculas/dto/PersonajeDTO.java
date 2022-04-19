@@ -1,5 +1,6 @@
 package com.alekmy.peliculas.dto;
 
+import java.util.List;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,5 +15,5 @@ public class PersonajeDTO {
     private Integer edad;
     private Double peso;
     private String historia;
-    private Set<PeliculaDTO> peliculasAsociadas;
+    private List<PeliculaDTO> peliculasAsociadas;
 }

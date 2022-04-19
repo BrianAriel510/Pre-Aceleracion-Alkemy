@@ -46,8 +46,8 @@ public class PeliculaMapper {
         }
 
         if (loadPersonajes) {
-            Set<PersonajeDTO> personajesDTO = personajeMapper.pesonajeListEntity2ListDTO((Set<PersonajeEntity>) entity.getPersonajesAsociados());
-            peliculaDTO.setPersonajesAsociados((Set<PersonajeDTO>) personajesDTO);
+            List<PersonajeDTO> personajesDTO = personajeMapper.pesonajeListEntity2ListDTO(entity.getPersonajesAsociados());
+            peliculaDTO.setPersonajesAsociados(personajesDTO);
         }
         return peliculaDTO;
     }
@@ -79,7 +79,7 @@ public class PeliculaMapper {
     }
 
     public List<PeliculaEntity> peliculaDTOList2EntityList(List<PeliculaDTO> listPeliculaDTO) { //TODO: cargar boolean de genero
-        Set<PeliculaEntity> entities = new HashSet<>();
+        List<PeliculaEntity> entities = new ArrayList<>();
         for (PeliculaDTO dto : listPeliculaDTO) {
             entities.add(this.peliculaDto2Entity(dto));
         }

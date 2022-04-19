@@ -1,5 +1,6 @@
 package com.alekmy.peliculas.dto;
 
+import java.util.List;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ public class PeliculaDTO {
     private String imagen;
     private String fechaDeCreacion; //tener en cuenta que la fecha acá tiene que es un String porque estoy en el DTO y voy a tener que parsearla en el mapper
     private Integer calificacion;
-    private Set<PersonajeDTO> personajesAsociados; //TODO PersonajeDTO --> mismo aca, no trabajo con el entity
+    private List<PersonajeDTO> personajesAsociados; //TODO PersonajeDTO --> mismo aca, no trabajo con el entity
     private GeneroDTO genero;
     private Long generoId;
 }

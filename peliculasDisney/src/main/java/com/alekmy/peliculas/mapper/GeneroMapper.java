@@ -28,8 +28,8 @@ public class GeneroMapper {
         generoDTO.setId(entity.getId()); //ahora si tengo el id y tengo que devolverlo al usuario.
         generoDTO.setNombre(entity.getNombre());
         if (loadPelicula) {
-            Set<PeliculaDTO> peliculasDTO
-                    = (Set<PeliculaDTO>) peliculaMapper.peliculaEntity2Dto(
+            List<PeliculaDTO> peliculasDTO
+                    = (List<PeliculaDTO>) peliculaMapper.peliculaEntity2Dto(
                             (PeliculaEntity) entity.getPeliculasAsociadas(), false, false);
             generoDTO.setPeliculasAsociadas(peliculasDTO);
         }
