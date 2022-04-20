@@ -52,8 +52,7 @@ public class PersonajeMapper {
         personajeDTO.setHistoria(entity.getHistoria());
         if (loadPelicula) {
             List<PeliculaDTO> peliculasDTO
-                    = (List<PeliculaDTO>) peliculaMapper.peliculaEntity2Dto(
-                            (PeliculaEntity) entity.getPeliculasAsociadas(), false, false);
+                    =  peliculaMapper.peliculaEntityList2DtoList(entity.getPeliculasAsociadas(), false, false);
             personajeDTO.setPeliculasAsociadas(peliculasDTO);
         }
         return personajeDTO;
@@ -72,6 +71,7 @@ public class PersonajeMapper {
         PersonajeDTO entityDto = personajeEntity2DTO(entity, false);
         personajeDto.setId(entityDto.getId());
         
+        //No se si es correcto usar tantos else...
         if (dto.getNombre() == null) {
             personajeDto.setNombre(entityDto.getNombre());
         } else {

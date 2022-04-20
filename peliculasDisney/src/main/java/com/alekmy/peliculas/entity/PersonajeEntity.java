@@ -45,6 +45,10 @@ public class PersonajeEntity {
 
     private boolean deleted = Boolean.FALSE; //--> soft delete
     
+    public void addPelicula (PeliculaEntity pelicula){
+        peliculasAsociadas.add(pelicula);
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

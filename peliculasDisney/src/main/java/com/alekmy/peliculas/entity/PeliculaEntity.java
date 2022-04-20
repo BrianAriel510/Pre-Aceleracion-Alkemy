@@ -59,4 +59,7 @@ public class PeliculaEntity {
 
     private Boolean deleted = Boolean.FALSE;
 
+    public void AddPersonaje(PersonajeEntity personje){
+        personajesAsociados.add(personje);
+    }
 }

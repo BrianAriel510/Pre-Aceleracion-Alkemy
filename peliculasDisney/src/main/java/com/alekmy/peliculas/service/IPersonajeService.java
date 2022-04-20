@@ -2,6 +2,7 @@ package com.alekmy.peliculas.service;
 
 import com.alekmy.peliculas.dto.PersonajeBasicDTO;
 import com.alekmy.peliculas.dto.PersonajeDTO;
+import com.alekmy.peliculas.entity.PersonajeEntity;
 import java.util.List;
 import java.util.Set;
 
@@ -18,5 +19,7 @@ public interface IPersonajeService {
     public PersonajeDTO update(PersonajeDTO dto, Long id);
     
     public PersonajeDTO findById(Long id);
+    
+    public PersonajeEntity getPersonajeById(Long id);
        
 }
