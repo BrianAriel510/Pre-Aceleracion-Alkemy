@@ -35,7 +35,7 @@ public class PeliculaMapper {
 
     public PeliculaDTO peliculaEntity2Dto(PeliculaEntity entity, boolean loadGenero, boolean loadPersonajes) {
         PeliculaDTO peliculaDTO = new PeliculaDTO();
-        peliculaDTO.setId(entity.getId());
+        peliculaDTO.setId(entity.getIdMovie());
         peliculaDTO.setTitulo(entity.getTitulo());
         peliculaDTO.setImagen(entity.getImagen());
         peliculaDTO.setFechaDeCreacion(entity.getFechaDeCreacion().toString()); //tener en cuenta de parsear la fecha
@@ -46,7 +46,7 @@ public class PeliculaMapper {
         }
 
         if (loadPersonajes) {
-            List<PersonajeDTO> personajesDTO = personajeMapper.pesonajeListEntity2ListDTO(entity.getPersonajesAsociados());
+            List<PersonajeDTO> personajesDTO = personajeMapper.pesonajeListEntity2ListDTO(entity.getPersonajesAsociados(),false);
             peliculaDTO.setPersonajesAsociados(personajesDTO);
         }
         return peliculaDTO;
@@ -54,7 +54,7 @@ public class PeliculaMapper {
     
      public PeliculaBasicDTO peliculaEntity2DtoBasic(PeliculaEntity entity) {
         PeliculaBasicDTO peliculaDTO = new PeliculaBasicDTO();
-        peliculaDTO.setId(entity.getId());
+        peliculaDTO.setId(entity.getIdMovie());
         peliculaDTO.setTitulo(entity.getTitulo());
         peliculaDTO.setImagen(entity.getImagen());
         peliculaDTO.setFechaDeCreacion(entity.getFechaDeCreacion().toString()); 

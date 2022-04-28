@@ -1,7 +1,10 @@
 package com.alekmy.peliculas.service;
 
+import com.alekmy.peliculas.dto.PeliculaBasicDTO;
+import com.alekmy.peliculas.dto.PeliculaDTO;
 import com.alekmy.peliculas.dto.PersonajeBasicDTO;
 import com.alekmy.peliculas.dto.PersonajeDTO;
+import com.alekmy.peliculas.entity.PeliculaEntity;
 import com.alekmy.peliculas.entity.PersonajeEntity;
 import java.util.List;
 import java.util.Set;
@@ -22,4 +25,5 @@ public interface IPersonajeService {
     
     public PersonajeEntity getPersonajeById(Long id);
        
+    public List<PersonajeDTO> getByFilters(String name, Integer age, List<Long> movies/*, String order*/);
 }

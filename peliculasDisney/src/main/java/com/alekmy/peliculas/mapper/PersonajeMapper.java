@@ -24,15 +24,15 @@ public class PersonajeMapper {
         personajeEntity.setNombre(dto.getNombre());
         personajeEntity.setImagen(dto.getImagen());
         personajeEntity.setEdad(dto.getEdad());
-        personajeEntity.setPeso(dto.getPeso());
+        personajeEntity.setPeso(dto.getPeso());        
         personajeEntity.setHistoria(dto.getHistoria());
         return personajeEntity;
     }
     
     public PersonajeEntity personajeDTO2Entity(PersonajeDTO dto) {
         PersonajeEntity personajeEntity = new PersonajeEntity();
-        if (personajeEntity.getId() == null) {
-            personajeEntity.setId(dto.getId());
+        if (personajeEntity.getIdCharacter() == null) {
+            personajeEntity.setIdCharacter(dto.getId());
         }
         personajeEntity.setNombre(dto.getNombre());
         personajeEntity.setImagen(dto.getImagen());
@@ -44,7 +44,7 @@ public class PersonajeMapper {
     
     public PersonajeDTO personajeEntity2DTO(PersonajeEntity entity, boolean loadPelicula) {
         PersonajeDTO personajeDTO = new PersonajeDTO();
-        personajeDTO.setId(entity.getId());
+        personajeDTO.setId(entity.getIdCharacter());
         personajeDTO.setNombre(entity.getNombre());
         personajeDTO.setImagen(entity.getImagen());
         personajeDTO.setEdad(entity.getEdad());
@@ -58,10 +58,10 @@ public class PersonajeMapper {
         return personajeDTO;
     }
     
-    public List<PersonajeDTO> pesonajeListEntity2ListDTO(List<PersonajeEntity> peliculasAsociadas) {
+    public List<PersonajeDTO> pesonajeListEntity2ListDTO(List<PersonajeEntity> peliculasAsociadas, boolean loadPelicula) {
         List<PersonajeDTO> listPersonajeDTO = new ArrayList<>();
         for (PersonajeEntity entity : peliculasAsociadas) {
-            listPersonajeDTO.add(personajeEntity2DTO(entity, false));
+            listPersonajeDTO.add(personajeEntity2DTO(entity, loadPelicula));
         }
         return listPersonajeDTO;
     }

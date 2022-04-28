@@ -28,7 +28,7 @@ public class PersonajeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idCharacter;
 
     private String imagen;
 
@@ -52,7 +52,7 @@ public class PersonajeEntity {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.id);
+        hash = 61 * hash + Objects.hashCode(this.idCharacter);
         return hash;
     }
 
@@ -68,7 +68,7 @@ public class PersonajeEntity {
             return false;
         }
         final PersonajeEntity other = (PersonajeEntity) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.idCharacter, other.idCharacter)) {
             return false;
         }
         return true;

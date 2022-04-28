@@ -1,7 +1,9 @@
 package com.alekmy.peliculas.controller;
 
+import com.alekmy.peliculas.dto.PeliculaDTO;
 import com.alekmy.peliculas.dto.PersonajeBasicDTO;
 import com.alekmy.peliculas.dto.PersonajeDTO;
+import com.alekmy.peliculas.entity.PeliculaEntity;
 import com.alekmy.peliculas.entity.PersonajeEntity;
 import com.alekmy.peliculas.service.IPersonajeService;
 import java.util.List;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -48,11 +51,20 @@ public class PersonajeController {
         PersonajeDTO result = personajeService.update(dto, id);
         return ResponseEntity.ok().body(result);
     }
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<PersonajeDTO> getById(@PathVariable Long id){
-        PersonajeDTO personaje= personajeService.findById(id);
+    public ResponseEntity<PersonajeDTO> getById(@PathVariable Long id) {
+        PersonajeDTO personaje = personajeService.findById(id);
         return ResponseEntity.ok(personaje);
     }
-    
+
+    @GetMapping
+    public ResponseEntity<List<PersonajeDTO>> getDetailsByFilters(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer age,
+            @RequestParam(required = false) List<Long> movies/*,
+            @RequestParam(required = false) String order*/) {
+        List<PersonajeDTO> personajes = personajeService.getByFilters(name, age, movies/*, order*/);
+        return ResponseEntity.ok().body(personajes);
+    }
 }

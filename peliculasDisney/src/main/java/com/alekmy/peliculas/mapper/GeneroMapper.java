@@ -25,7 +25,7 @@ public class GeneroMapper {
 
     public GeneroDTO generoEntity2DTO(GeneroEntity entity, boolean loadPelicula) {
         GeneroDTO generoDTO = new GeneroDTO();
-        generoDTO.setId(entity.getId()); //ahora si tengo el id y tengo que devolverlo al usuario.
+        generoDTO.setId(entity.getIdGenero()); //ahora si tengo el id y tengo que devolverlo al usuario.
         generoDTO.setNombre(entity.getNombre());
         if (loadPelicula) {
             List<PeliculaDTO> peliculasDTO
@@ -37,7 +37,7 @@ public class GeneroMapper {
 
     public GeneroBasicDTO generoEntity2DTOBasic(GeneroEntity entity) {
         GeneroBasicDTO generoDTO = new GeneroBasicDTO();
-        generoDTO.setId(entity.getId()); //ahora si tengo el id y tengo que devolverlo al usuario.
+        generoDTO.setId(entity.getIdGenero()); //ahora si tengo el id y tengo que devolverlo al usuario.
         generoDTO.setNombre(entity.getNombre());
 
         return generoDTO;

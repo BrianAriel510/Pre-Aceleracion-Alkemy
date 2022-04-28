@@ -31,7 +31,7 @@ public class PeliculaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idMovie;
 
     private String titulo;
 

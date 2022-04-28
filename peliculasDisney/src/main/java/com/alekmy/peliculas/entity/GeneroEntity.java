@@ -24,7 +24,7 @@ public class GeneroEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idGenero;
 
     private String nombre;
 
