@@ -7,6 +7,7 @@ import com.alekmy.peliculas.dto.PersonajeDTO;
 import com.alekmy.peliculas.dto.PersonajeFilterDTO;
 import com.alekmy.peliculas.entity.PeliculaEntity;
 import com.alekmy.peliculas.entity.PersonajeEntity;
+import com.alekmy.peliculas.exceptions.ParamNotFoundException;
 import com.alekmy.peliculas.mapper.PersonajeMapper;
 import com.alekmy.peliculas.repository.PeliculaRepository;
 import com.alekmy.peliculas.repository.PersonajeRepository;
@@ -77,7 +78,7 @@ public class PersonajeServiceImpl implements IPersonajeService {
         Optional<PersonajeEntity> personajeFound = personajeRepository.findById(id);
 
         if (!personajeFound.isPresent()) {
-            log.info("El id " + id + " es incorrecto o inexistente");
+            throw new ParamNotFoundException("Id " + id + " no válido");
         }
 
         PersonajeEntity personajeCaught = personajeFound.get();

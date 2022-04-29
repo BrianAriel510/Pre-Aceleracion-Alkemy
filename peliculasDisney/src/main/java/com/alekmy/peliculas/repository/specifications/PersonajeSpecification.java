@@ -35,7 +35,7 @@ public class PersonajeSpecification {
 //TODO: Arreglar este filtro
             if (!CollectionUtils.isEmpty(filterDTO.getMovies())) {
                 Join<PeliculaEntity, PersonajeEntity> join = root.join("peliculasAsociadas", JoinType.INNER);
-                Expression<String> movie = join.get("peliculas");
+                Expression<String> movie = join.get("idMovie");
                 predicates.add(movie.in(filterDTO.getMovies()));
             }
 
