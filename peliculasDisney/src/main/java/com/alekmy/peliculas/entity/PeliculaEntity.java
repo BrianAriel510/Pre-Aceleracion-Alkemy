@@ -1,6 +1,7 @@
 package com.alekmy.peliculas.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -49,17 +50,15 @@ public class PeliculaEntity {
     @JoinTable(name = "personajes_peliculas",
             joinColumns = @JoinColumn(name = "peliculas_id"),
             inverseJoinColumns = @JoinColumn(name = "personajes_id"))
-    private List<PersonajeEntity> personajesAsociados;
+    private List<PersonajeEntity> personajesAsociados = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "generos_id", insertable = false, updatable = false)
     private GeneroEntity genero;
 
-    private Long generoId;
-
     private Boolean deleted = Boolean.FALSE;
 
-    public void AddPersonaje(PersonajeEntity personje){
+    public void AddPersonaje(PersonajeEntity personje) {
         personajesAsociados.add(personje);
     }
 }

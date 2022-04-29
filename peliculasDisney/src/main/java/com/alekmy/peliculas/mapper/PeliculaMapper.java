@@ -5,13 +5,9 @@ import com.alekmy.peliculas.dto.PeliculaBasicDTO;
 import com.alekmy.peliculas.dto.PeliculaDTO;
 import com.alekmy.peliculas.dto.PersonajeDTO;
 import com.alekmy.peliculas.entity.PeliculaEntity;
-import com.alekmy.peliculas.entity.PersonajeEntity;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import static com.alekmy.peliculas.mapper.util.String2LocalDate.string2LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -46,21 +42,21 @@ public class PeliculaMapper {
         }
 
         if (loadPersonajes) {
-            List<PersonajeDTO> personajesDTO = personajeMapper.pesonajeListEntity2ListDTO(entity.getPersonajesAsociados(),false);
+            List<PersonajeDTO> personajesDTO = personajeMapper.pesonajeListEntity2ListDTO(entity.getPersonajesAsociados(), false);
             peliculaDTO.setPersonajesAsociados(personajesDTO);
         }
         return peliculaDTO;
     }
-    
-     public PeliculaBasicDTO peliculaEntity2DtoBasic(PeliculaEntity entity) {
+
+    public PeliculaBasicDTO peliculaEntity2DtoBasic(PeliculaEntity entity) {
         PeliculaBasicDTO peliculaDTO = new PeliculaBasicDTO();
         peliculaDTO.setId(entity.getIdMovie());
         peliculaDTO.setTitulo(entity.getTitulo());
         peliculaDTO.setImagen(entity.getImagen());
-        peliculaDTO.setFechaDeCreacion(entity.getFechaDeCreacion().toString()); 
+        peliculaDTO.setFechaDeCreacion(entity.getFechaDeCreacion().toString());
         peliculaDTO.setCalificacion(entity.getCalificacion());
         return peliculaDTO;
-     }
+    }
 
     public List<PeliculaDTO> peliculaEntityList2DtoList(List<PeliculaEntity> listPeliculaEntity, boolean loadGenero, boolean loadPersonajes) {
         List<PeliculaDTO> listPeliculaDTO = new ArrayList<>();
@@ -85,11 +81,4 @@ public class PeliculaMapper {
         }
         return (List<PeliculaEntity>) entities;
     }
-
-    public LocalDate string2LocalDate(String stringDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(stringDate, formatter);
-        return date;
-    }
-
 }

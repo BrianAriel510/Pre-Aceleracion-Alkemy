@@ -49,13 +49,7 @@ public class PersonajeEntity {
         peliculasAsociadas.add(pelicula);
     }
     
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.idCharacter);
-        return hash;
-    }
-
+    //TODO: corregir a lista a Set
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

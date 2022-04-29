@@ -3,12 +3,9 @@ package com.alekmy.peliculas.mapper;
 import com.alekmy.peliculas.dto.PeliculaDTO;
 import com.alekmy.peliculas.dto.PersonajeBasicDTO;
 import com.alekmy.peliculas.dto.PersonajeDTO;
-import com.alekmy.peliculas.entity.PeliculaEntity;
 import com.alekmy.peliculas.entity.PersonajeEntity;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

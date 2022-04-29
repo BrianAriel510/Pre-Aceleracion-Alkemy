@@ -5,6 +5,7 @@ import com.alekmy.peliculas.dto.GeneroBasicDTO;
 import com.alekmy.peliculas.dto.GeneroDTO;
 import com.alekmy.peliculas.service.IGeneroService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class GeneroController {
     private IGeneroService generoService;
     
     @PostMapping
-    public ResponseEntity<GeneroDTO> save(@RequestBody GeneroBasicDTO genero) {
+    public ResponseEntity<GeneroDTO> save(@Valid @RequestBody GeneroBasicDTO genero) {
         GeneroDTO generoGuardado = generoService.save(genero);
         return ResponseEntity.status(HttpStatus.CREATED).body(generoGuardado);
     }

@@ -5,6 +5,7 @@ import com.alekmy.peliculas.dto.PeliculaBasicDTO;
 import com.alekmy.peliculas.dto.PeliculaDTO;
 import com.alekmy.peliculas.service.IPeliculaService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class PeliculaController {
     private IPeliculaService peliculaService;
     
     @PostMapping
-    public ResponseEntity<PeliculaDTO> save (@RequestBody PeliculaDTO pelicula){
+    public ResponseEntity<PeliculaDTO> save (@Valid @RequestBody PeliculaDTO pelicula){
         PeliculaDTO peliculaGuardada = peliculaService.save(pelicula);
         return ResponseEntity.status(HttpStatus.CREATED).body(peliculaGuardada);
     }

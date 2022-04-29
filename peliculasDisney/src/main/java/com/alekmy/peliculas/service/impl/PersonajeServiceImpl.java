@@ -58,7 +58,7 @@ public class PersonajeServiceImpl implements IPersonajeService {
     public List<PersonajeDTO> getAllPersonajes() {
         List<PersonajeEntity> personajesEntity = personajeRepository.findAll();
         List<PersonajeEntity> listPersonajes = new ArrayList<>(personajesEntity);
-        List<PersonajeDTO> result = personajeMapper.pesonajeListEntity2ListDTO(listPersonajes,false);
+        List<PersonajeDTO> result = personajeMapper.pesonajeListEntity2ListDTO(listPersonajes, false);
 
         return result;
     }
@@ -67,9 +67,11 @@ public class PersonajeServiceImpl implements IPersonajeService {
     public void delete(Long id) {
         Optional<PersonajeEntity> pjFound = personajeRepository.findById(id);
 
-        if (pjFound.isPresent()) {
-            personajeRepository.deleteById(pjFound.get().getIdCharacter());
+        if (!pjFound.isPresent()) {
+            throw new ParamNotFoundException("Id " + id + " no válido");
         }
+
+        personajeRepository.deleteById(pjFound.get().getIdCharacter());
     }
 
     @Override
@@ -94,7 +96,7 @@ public class PersonajeServiceImpl implements IPersonajeService {
         Optional<PersonajeEntity> personajeFound = personajeRepository.findById(id);
 
         if (!personajeFound.isPresent()) {
-            log.info("No se encontró el personaje con el ud " + id);
+            log.info("No se encontró el personaje con el id " + id);
         }
 
         PersonajeDTO personaje = personajeMapper.personajeEntity2DTO(personajeFound.get(), true);
@@ -110,7 +112,9 @@ public class PersonajeServiceImpl implements IPersonajeService {
 
     @Override
     public List<PersonajeDTO> getByFilters(String name, Integer age, List<Long> movies/*, String order*/) {
+
         PersonajeFilterDTO filterDTO = new PersonajeFilterDTO(name, age, movies/*, order*/);
+
         List<PersonajeEntity> personajes = personajeRepository.findAll(personajeSpecification.getByFilters(filterDTO));
         List<PersonajeDTO> dtos = personajeMapper.pesonajeListEntity2ListDTO(personajes, true);
         return dtos;

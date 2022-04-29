@@ -5,12 +5,15 @@ import com.alekmy.peliculas.dto.PersonajeBasicDTO;
 import com.alekmy.peliculas.dto.PersonajeDTO;
 import com.alekmy.peliculas.entity.PeliculaEntity;
 import com.alekmy.peliculas.entity.PersonajeEntity;
+import com.alekmy.peliculas.exceptions.BadRequestException;
 import com.alekmy.peliculas.service.IPersonajeService;
 import java.util.List;
 import java.util.Set;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +32,7 @@ public class PersonajeController {
     private IPersonajeService personajeService;
 
     @PostMapping
-    public ResponseEntity<PersonajeDTO> save(@RequestBody PersonajeBasicDTO dto) {
+    public ResponseEntity<PersonajeDTO> save(@Valid @RequestBody PersonajeBasicDTO dto) {
         PersonajeDTO personajeGuardado = personajeService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(personajeGuardado);
     }
@@ -47,7 +50,13 @@ public class PersonajeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PersonajeDTO> updatePersonaje(@PathVariable Long id, @RequestBody PersonajeDTO dto) {
+    public ResponseEntity<PersonajeDTO> updatePersonaje(@Valid @PathVariable Long id, Errors error,
+            @RequestBody PersonajeDTO dto) {
+       
+        if(error.hasErrors()){
+            throw new BadRequestException("Error en la carga del personaje");
+        }
+            
         PersonajeDTO result = personajeService.update(dto, id);
         return ResponseEntity.ok().body(result);
     }
