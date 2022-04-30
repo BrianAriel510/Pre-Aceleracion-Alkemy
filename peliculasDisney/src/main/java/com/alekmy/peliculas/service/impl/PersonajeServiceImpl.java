@@ -1,24 +1,17 @@
 package com.alekmy.peliculas.service.impl;
 
-import com.alekmy.peliculas.dto.PeliculaBasicDTO;
-import com.alekmy.peliculas.dto.PeliculaDTO;
 import com.alekmy.peliculas.dto.PersonajeBasicDTO;
 import com.alekmy.peliculas.dto.PersonajeDTO;
-import com.alekmy.peliculas.dto.PersonajeFilterDTO;
-import com.alekmy.peliculas.entity.PeliculaEntity;
+import com.alekmy.peliculas.dto.filters.PersonajeFilterDTO;
 import com.alekmy.peliculas.entity.PersonajeEntity;
 import com.alekmy.peliculas.exceptions.ParamNotFoundException;
 import com.alekmy.peliculas.mapper.PersonajeMapper;
-import com.alekmy.peliculas.repository.PeliculaRepository;
 import com.alekmy.peliculas.repository.PersonajeRepository;
 import com.alekmy.peliculas.repository.specifications.PersonajeSpecification;
-import com.alekmy.peliculas.service.IPeliculaService;
 import com.alekmy.peliculas.service.IPersonajeService;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

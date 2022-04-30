@@ -1,6 +1,5 @@
 package com.alekmy.peliculas.service.impl;
 
-import com.alekmy.peliculas.dto.GeneroBasicDTO;
 import com.alekmy.peliculas.dto.GeneroDTO;
 import com.alekmy.peliculas.entity.GeneroEntity;
 import com.alekmy.peliculas.mapper.GeneroMapper;
@@ -20,7 +19,7 @@ public class GeneroServiceImpl implements IGeneroService {
     private GeneroRepository generoRepository;
 
     @Override
-    public GeneroDTO save(GeneroBasicDTO dto) {
+    public GeneroDTO save(GeneroDTO dto) {
         GeneroEntity generoEntity = generoMapper.generoDto2Entity(dto);
         GeneroEntity generoSaved = generoRepository.save(generoEntity);
         GeneroDTO result = generoMapper.generoEntity2DTO(generoSaved,false);
@@ -34,13 +33,6 @@ public class GeneroServiceImpl implements IGeneroService {
         return result;
     }
 
-    @Override
-    public List<GeneroBasicDTO> getAllGenerosBasic() {
-        List<GeneroEntity>generoEntities = generoRepository.findAll();
-        List<GeneroBasicDTO> result= generoMapper.generoBasicEntityList2DTOList(generoEntities);
-        return result;
-    }
-    
     @Override
     public void delete(Long id) {
         generoRepository.deleteById(id);

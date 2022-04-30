@@ -3,6 +3,7 @@ package com.alekmy.peliculas.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,16 +45,14 @@ public class PeliculaEntity {
 
     private Integer calificacion;
 
-    @ManyToMany(cascade = {
-        CascadeType.PERSIST, CascadeType.MERGE
-    })
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "personajes_peliculas",
             joinColumns = @JoinColumn(name = "peliculas_id"),
             inverseJoinColumns = @JoinColumn(name = "personajes_id"))
     private List<PersonajeEntity> personajesAsociados = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "generos_id", insertable = false, updatable = false)
+    @ManyToOne 
+    @JoinColumn(name = "genero_id"/*, insertable = false, updatable = false*/)
     private GeneroEntity genero;
 
     private Boolean deleted = Boolean.FALSE;
@@ -61,4 +60,27 @@ public class PeliculaEntity {
     public void AddPersonaje(PersonajeEntity personje) {
         personajesAsociados.add(personje);
     }
-}
+
+    public void removePersonaje(PersonajeEntity personaje) {
+        this.personajesAsociados.remove(personaje);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PeliculaEntity other = (PeliculaEntity) obj;
+        if (!Objects.equals(this.idMovie, other.idMovie)) {
+            return false;
+        }
+        return true;
+    }
+
+    }

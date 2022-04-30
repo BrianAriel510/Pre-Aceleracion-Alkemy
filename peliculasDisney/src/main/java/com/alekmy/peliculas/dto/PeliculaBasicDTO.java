@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Getter
 @Setter
@@ -21,8 +20,6 @@ public class PeliculaBasicDTO {
     private String imagen;
 
     @NotNull(message = "Por favor, ingrese una fecha")
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String fechaDeCreacion;
 
     @Range(min = 1, max = 5, message = "La calificación debe ser entre 1 y 5")

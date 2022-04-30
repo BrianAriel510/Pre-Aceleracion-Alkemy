@@ -16,12 +16,8 @@ public class PersonajeBasicDTO {
 
     private String imagen;
 
-    @NotEmpty(message = "Debe ingresar una edad")
-    @Min(value = 0, message = "La edad no puede ser menor que 0")
     private Integer edad;
 
-    @NotEmpty(message = "Debe ingresar un peso")
-    @Min(value = 0, message = "El peso no puede ser inferior a 0")
     private Double peso;
 
     private String historia;

@@ -1,7 +1,6 @@
 package com.alekmy.peliculas.dto;
 
-import java.util.List;
-import java.util.Set;
+import javax.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +9,7 @@ import lombok.Setter;
 public class GeneroDTO {
 
     private Long id;
+   
+    @NotEmpty(message = "Por favor, ingrese un nombre")
     private String nombre;
-    private List<PeliculaDTO> peliculasAsociadas;
 }

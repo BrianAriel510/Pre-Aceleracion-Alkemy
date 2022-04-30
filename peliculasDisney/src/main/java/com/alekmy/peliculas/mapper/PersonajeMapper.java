@@ -68,7 +68,7 @@ public class PersonajeMapper {
         PersonajeDTO entityDto = personajeEntity2DTO(entity, false);
         personajeDto.setId(entityDto.getId());
         
-        //No se si es correcto usar tantos else...
+        
         if (dto.getNombre() == null) {
             personajeDto.setNombre(entityDto.getNombre());
         } else {

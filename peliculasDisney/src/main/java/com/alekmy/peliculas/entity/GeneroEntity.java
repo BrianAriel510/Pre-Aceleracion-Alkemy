@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
@@ -29,8 +30,5 @@ public class GeneroEntity {
     private String nombre;
 
     private boolean deleted = Boolean.FALSE; //--> soft delete. Se complementa con las anotaciondes @SQL y @Where. 1(T) o 0(F) en la DB
-
-    @OneToMany(mappedBy = "genero", cascade = CascadeType.PERSIST)
-    private List<PeliculaEntity> peliculasAsociadas;
 
 }

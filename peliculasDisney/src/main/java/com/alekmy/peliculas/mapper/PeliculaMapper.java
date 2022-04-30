@@ -26,6 +26,7 @@ public class PeliculaMapper {
         peliculaEntity.setImagen(dto.getImagen());
         peliculaEntity.setFechaDeCreacion(string2LocalDate(dto.getFechaDeCreacion()));
         peliculaEntity.setCalificacion(dto.getCalificacion());
+        peliculaEntity.setGenero(generoMapper.generoDto2Entity(dto.getGenero()));
         return peliculaEntity;
     }
 
@@ -80,5 +81,37 @@ public class PeliculaMapper {
             entities.add(this.peliculaDto2Entity(dto));
         }
         return (List<PeliculaEntity>) entities;
+    }
+    
+    public PeliculaDTO pelicula2Update(PeliculaEntity entity, PeliculaDTO dto ){
+        PeliculaDTO peliculaDto = new PeliculaDTO();
+        PeliculaDTO entityDto = peliculaEntity2Dto(entity, false, false);
+        peliculaDto.setId(entityDto.getId());
+        
+        if (dto.getTitulo() == null) {
+            peliculaDto.setTitulo(entityDto.getTitulo());
+        } else {
+            peliculaDto.setTitulo(dto.getTitulo());
+        }
+        
+        if (dto.getImagen() == null) {
+            peliculaDto.setImagen(entityDto.getImagen());
+        } else {
+            peliculaDto.setImagen(dto.getImagen());
+        }
+        
+        if (dto.getFechaDeCreacion() == null) {
+            peliculaDto.setFechaDeCreacion(entityDto.getFechaDeCreacion());
+        } else {
+            peliculaDto.setFechaDeCreacion(dto.getFechaDeCreacion());
+        }
+        
+        if (dto.getCalificacion() == null) {
+            peliculaDto.setCalificacion(entityDto.getCalificacion());
+        } else {
+            peliculaDto.setCalificacion(dto.getCalificacion());
+        }
+        
+        return peliculaDto;
     }
 }

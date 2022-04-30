@@ -1,13 +1,9 @@
 package com.alekmy.peliculas.mapper;
 
-import com.alekmy.peliculas.dto.GeneroBasicDTO;
 import com.alekmy.peliculas.dto.GeneroDTO;
-import com.alekmy.peliculas.dto.PeliculaDTO;
 import com.alekmy.peliculas.entity.GeneroEntity;
-import com.alekmy.peliculas.entity.PeliculaEntity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +13,7 @@ public class GeneroMapper {
     @Autowired
     private PeliculaMapper peliculaMapper;
 
-    public GeneroEntity generoDto2Entity(GeneroBasicDTO dto) {
+    public GeneroEntity generoDto2Entity(GeneroDTO dto) {
         GeneroEntity generoEntity = new GeneroEntity();
         generoEntity.setNombre(dto.getNombre());
         return generoEntity;
@@ -27,16 +23,12 @@ public class GeneroMapper {
         GeneroDTO generoDTO = new GeneroDTO();
         generoDTO.setId(entity.getIdGenero()); //ahora si tengo el id y tengo que devolverlo al usuario.
         generoDTO.setNombre(entity.getNombre());
-        if (loadPelicula) {
-            List<PeliculaDTO> peliculasDTO
-                    =  peliculaMapper.peliculaEntityList2DtoList(entity.getPeliculasAsociadas(), false, false);
-            generoDTO.setPeliculasAsociadas(peliculasDTO);
-        }
+      
         return generoDTO;
     }
 
-    public GeneroBasicDTO generoEntity2DTOBasic(GeneroEntity entity) {
-        GeneroBasicDTO generoDTO = new GeneroBasicDTO();
+    public GeneroDTO generoEntity2DTOBasic(GeneroEntity entity) {
+        GeneroDTO generoDTO = new GeneroDTO();
         generoDTO.setId(entity.getIdGenero()); //ahora si tengo el id y tengo que devolverlo al usuario.
         generoDTO.setNombre(entity.getNombre());
 
@@ -51,8 +43,8 @@ public class GeneroMapper {
         return listGeneroDTO;
     }
 
-    public List<GeneroBasicDTO> generoBasicEntityList2DTOList(List<GeneroEntity> listGeneroEntity) {
-        List<GeneroBasicDTO> listGeneroDTO = new ArrayList<>();
+    public List<GeneroDTO> generoBasicEntityList2DTOList(List<GeneroEntity> listGeneroEntity) {
+        List<GeneroDTO> listGeneroDTO = new ArrayList<>();
         for (GeneroEntity entity : listGeneroEntity) {
             listGeneroDTO.add(generoEntity2DTOBasic(entity));
         }

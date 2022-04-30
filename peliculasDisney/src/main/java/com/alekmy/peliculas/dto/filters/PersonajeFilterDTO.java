@@ -1,4 +1,4 @@
-package com.alekmy.peliculas.dto;
+package com.alekmy.peliculas.dto.filters;
 
 import com.alekmy.peliculas.entity.PeliculaEntity;
 import java.util.List;
